@@ -16,16 +16,18 @@ public class CustomListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_list);
 
         List<ItemModel> items = new ArrayList<>();
-        items.add(new ItemModel(R.drawable.thumb1, "Item 1"));
-        items.add(new ItemModel(R.drawable.thumb2, "Item 2"));
-        items.add(new ItemModel(R.drawable.thumb3, "Item 3"));
-        items.add(new ItemModel(R.drawable.thumb4, "Item 4"));
-        items.add(new ItemModel(R.drawable.thumb5, "Item 5"));
-        items.add(new ItemModel(R.drawable.thumb6, "Item 6"));
-        items.add(new ItemModel(R.drawable.thumb7, "Item 7"));
-        items.add(new ItemModel(R.drawable.thumb8, "Item 8"));
-        items.add(new ItemModel(R.drawable.thumb9, "Item 9"));
-        items.add(new ItemModel(R.drawable.thumb10, "Item 10"));
+//        items.add(new ItemModel(R.drawable.thumb1, "Item 1"));
+//        items.add(new ItemModel(R.drawable.thumb2, "Item 2"));
+//        items.add(new ItemModel(R.drawable.thumb3, "Item 3"));
+//        items.add(new ItemModel(R.drawable.thumb4, "Item 4"));
+//        items.add(new ItemModel(R.drawable.thumb5, "Item 5"));
+//        items.add(new ItemModel(R.drawable.thumb6, "Item 6"));
+//        items.add(new ItemModel(R.drawable.thumb7, "Item 7"));
+//        items.add(new ItemModel(R.drawable.thumb8, "Item 8"));
+//        items.add(new ItemModel(R.drawable.thumb9, "Item 9"));
+//        items.add(new ItemModel(R.drawable.thumb10, "Item 10"));
+        for (int i = 1; i <= 20; i++)
+            items.add(new ItemModel(getResources().getIdentifier("thumb" + i, "drawable", getPackageName()), "Item " + i));
 
         ItemAdapter adapter = new ItemAdapter(this, items);
         ListView listView = findViewById(R.id.list_view);

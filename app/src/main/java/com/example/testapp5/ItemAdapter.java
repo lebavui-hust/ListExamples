@@ -38,28 +38,38 @@ public class ItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        MyViewHolder viewHolder;
+
         if (view == null)
         {
             view = LayoutInflater.from(context).inflate(R.layout.custom_layout_item_2, null);
-        }
-
-        ImageView imageThumb = view.findViewById(R.id.image_thumb);
-        TextView textCaption = view.findViewById(R.id.text_caption);
-        CheckBox checkSelected = view.findViewById(R.id.check_selected);
+            viewHolder = new MyViewHolder();
+            viewHolder.imageThumb = view.findViewById(R.id.image_thumb);
+            viewHolder.textCaption = view.findViewById(R.id.text_caption);
+            viewHolder.checkSelected = view.findViewById(R.id.check_selected);
+            view.setTag(viewHolder);
+        } else
+            viewHolder = (MyViewHolder) view.getTag();
 
         ItemModel item = items.get(i);
-        imageThumb.setImageResource(item.getThumb());
-        textCaption.setText(item.getCaption());
-        checkSelected.setChecked(item.isChecked());
+        viewHolder.imageThumb.setImageResource(item.getThumb());
+        viewHolder.textCaption.setText(item.getCaption());
+        viewHolder.checkSelected.setChecked(item.isChecked());
 
-        checkSelected.setOnClickListener(new View.OnClickListener() {
+        viewHolder.checkSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item.setChecked(checkSelected.isChecked());
+                item.setChecked(viewHolder.checkSelected.isChecked());
                 notifyDataSetChanged();
             }
         });
 
         return view;
+    }
+
+    class MyViewHolder {
+        ImageView imageThumb;
+        TextView textCaption;
+        CheckBox checkSelected;
     }
 }
